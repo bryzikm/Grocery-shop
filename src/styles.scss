@@ -1,0 +1,46 @@
+@import "assets/scss/fonts";
+@import "assets/scss/spinner";
+@import "assets/scss/variables";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+h1, h2, h3, h4, h5, h6, p, span, input, strong, button, a, label {
+  margin: 0;
+  padding: 0;
+  font-family: Lato, sans-serif !important;
+}
+
+body {
+  font-size: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  outline: none !important;
+}
+
+* {
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: none;
+    background-color: $whiteColor;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $baseThemeColor;
+  }
+}
+
+.container {
+  max-width: 1140px;
+  padding: 0 15px;
+  width: 100%;
+  margin: 0 auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+

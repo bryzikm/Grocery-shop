@@ -1,0 +1,16 @@
+<div class="products-cart">
+  <div class="button-wrapper">
+    <button class="button" (click)="changeCartVisibility()">
+      <span class="button__text" *ngIf="!isCartVisible">Pokaż koszyk</span>
+      <span class="button__text" *ngIf="isCartVisible">Ukryj koszyk</span>
+    </button>
+  </div>
+  <div class="products" *ngIf="isCartVisible">
+    <div class="products--content" *ngIf="products.length > 0">
+      <div *ngFor="let product of products">{{product.name}}</div>
+    </div>
+    <div class="products--empty" *ngIf="products.length === 0">
+      <p class="products__info">Brak produktów w koszyku</p>
+    </div>
+  </div>
+</div>

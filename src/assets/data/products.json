@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "name": "Jabłka",
+    "price": 2.0,
+    "image_url": "https://www.zajadam.pl/wp-content/uploads/2015/02/Jablko1.png"
+  },
+  {
+    "id": 2,
+    "name": "Mandarynki",
+    "price": 3.0,
+    "image_url": "https://static.alleceny.pl/images/products/300x300/mandarynka-1kg-683.png"
+  },
+  {
+    "id": 3,
+    "name": "Banany",
+    "price": 3.5,
+    "image_url": "https://www.zajadam.pl/wp-content/uploads/2015/02/Banan1.png"
+  },
+  {
+    "id": 4,
+    "name": "Wiśnie",
+    "price": 9.0,
+    "image_url": "http://sklep.fatty.pl/photo/tinyMce/wisnie.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Truskawki",
+    "price": 7.5,
+    "image_url": "https://www.zajadam.pl/wp-content/uploads/2015/03/Truskawka.png"
+  },
+  {
+    "id": 6,
+    "name": "Maliny",
+    "price": 6.0,
+    "image_url": "https://www.zajadam.pl/wp-content/uploads/2015/03/maliny.png"
+  },
+  {
+    "id": 7,
+    "name": "Arbuz",
+    "price": 4.5,
+    "image_url": "https://www.zajadam.pl/wp-content/uploads/2015/03/Arbuz.png"
+  },
+  {
+    "id": 8,
+    "name": "Gruszki",
+    "price": 5.0,
+    "image_url": "https://www.zajadam.pl/wp-content/uploads/2015/02/Gruszka.png"
+  },
+  {
+    "id": 9,
+    "name": "Porzeczki",
+    "price": 6.5,
+    "image_url": "https://www.zajadam.pl/wp-content/uploads/2015/03/Czerwona-porzeczka.png"
+  }
+]

@@ -1,0 +1,20 @@
+<div class="products-list">
+  <div class="sort">
+    <select class="sort__select" [(ngModel)]="sortType" (ngModelChange)="sortProductsBySortType()">
+      <option [ngValue]="null" disabled selected>Sortuj</option>
+      <option [ngValue]="'PRICE'">Cena</option>
+      <option [ngValue]="'NAME'">Nazwa</option>
+    </select>
+  </div>
+  <div class="product" *ngFor="let product of products">
+    <div class="product__wrapper">
+      <img class="product__image" src="{{ product.image_url }}" />
+      <h4 class="product__name">{{ product.name }}</h4>
+      <p class="product__price">{{ product.price | number : '1.2' }} zł</p>
+      <button class="button" (click)="addProductToCart(product)">
+        <span class="button__label">Dodaj do koszyka</span>
+        <i class="material-icons button__icon">add_shopping_cart</i>
+      </button>
+    </div>
+  </div>
+</div>

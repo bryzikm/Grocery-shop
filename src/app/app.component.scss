@@ -1,0 +1,14 @@
+@import "../assets/scss/variables";
+
+.header {
+  width: 100%;
+  padding: 20px 0;
+  text-align: left;
+  background-color: $baseThemeColor;
+
+  &__logo {
+    color: $whiteColor;
+    font-size: 1.8em;
+    font-weight: 600;
+  }
+}

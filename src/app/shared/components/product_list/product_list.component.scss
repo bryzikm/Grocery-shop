@@ -1,0 +1,110 @@
+@import "../../../../assets/scss/variables";
+@import "../../../../assets/scss/mixins";
+
+.products-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.sort {
+  width: 100%;
+  margin: 0 0 40px;
+
+  &__select {
+    padding: 5px 10px;
+    font-size: 1em;
+    color: $baseBoldFontColor;
+    font-weight: 300;
+    outline: none;
+  }
+}
+
+.product {
+  width: 33.3333333%;
+  padding: 0 15px;
+  box-sizing: border-box;
+  margin: 0 0 30px;
+
+  &__wrapper {
+    padding: 0 10px 25px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 14px -4px $baseBoxShadowColor;
+    @include transition(.2s);
+
+    &:hover {
+      box-shadow: 0 0 20px 0 $baseBoxShadowColor;
+      @include transition(.2s);
+
+      .product__image {
+        transform: rotate(5deg);
+        @include transition(.2s);
+      }
+    }
+  }
+
+  &__image {
+    width: 250px;
+    @include transition(.2s);
+  }
+
+  &__name {
+    font-size: 1.1em;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: $baseBoldFontColor;
+    margin: 0 0 10px;
+  }
+
+  &__price {
+    font-size: 1em;
+    font-weight: 600;
+    color: $baseBoldFontColor;
+    margin: 0 0 10px;
+  }
+}
+
+.button {
+  border: 0;
+  background-color: $baseThemeColor;
+  padding: 10px 15px;
+  cursor: pointer;
+  line-height: 2em;
+  @include transition(.3s);
+
+  &__label{
+    color: $whiteColor;
+    font-size: 1.2em;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+
+  &__icon {
+    color: $whiteColor;
+    font-size: 1.8em;
+    vertical-align: middle;
+  }
+
+  &:hover {
+    background-color: darken($baseThemeColor, 15%);
+    @include transition(.3s);
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .product {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .product {
+    width: 100%;
+
+    &__image {
+      width: 200px;
+    }
+  }
+}
