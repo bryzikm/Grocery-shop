@@ -2,11 +2,11 @@
   <div class="button-wrapper">
     <button class="button button--show">
       <span class="button__text"
-        *ngIf="!(shopCartSubscription | async)?.isCartVisible"
-        (click)="showShopCart()">Pokaż koszyk</span>
+            *ngIf="!(shopCartSubscription | async)?.isCartVisible"
+            (click)="showShopCart()">Pokaż koszyk</span>
       <span class="button__text"
-        *ngIf="(shopCartSubscription | async)?.isCartVisible"
-        (click)="hideShopCart()">Ukryj koszyk</span>
+            *ngIf="(shopCartSubscription | async)?.isCartVisible"
+            (click)="hideShopCart()">Ukryj koszyk</span>
     </button>
   </div>
   <div class="products" *ngIf="(shopCartSubscription | async)?.isCartVisible">
@@ -23,13 +23,18 @@
         <tbody>
           <tr class="product" *ngFor="let product of (shopCartSubscription | async)?.items">
             <td>
-              <img class="product__image" src="{{product.image_url}}" />
+              <img class="product__image" src="{{product.image_url}}"/>
             </td>
             <td class="product__name">{{product.name}}</td>
-            <td>
-              <input class="product__number" type="number" min="1"
-                     [(ngModel)]="product.count"
-                     (ngModelChange)="changeProductNumber()" />
+            <td class="input-group">
+              <button class="button button--increment" (click)="incrementProductNumber(product);">
+                <i class="material-icons button__icon">add</i>
+              </button>
+              <input class="product__number" type="text" pattern="\d{1,5}" disabled
+                     [(ngModel)]="product.count" />
+              <button class="button button--decrement" (click)="decrementProductNumber(product);">
+                <i class="material-icons button__icon">remove</i>
+              </button>
             </td>
             <td class="product__price">Cena: {{product.price * product.count | number : '1.2'}} zł</td>
             <td>

@@ -29,12 +29,29 @@
     }
   }
 
+  &--increment,
+  &--decrement {
+    margin: 0 auto;
+    display: block;
+    padding: 2px 8px;
+    background-color: $baseThemeColor;
+
+    &:hover {
+      background-color: darken($baseThemeColor, 15%);
+      @include transition(.3s);
+    }
+  }
+
   &__text {
     color: $whiteColor;
     font-size: 1.2em;
     padding: 10px 15px;
     width: 135px;
     display: inline-block;
+  }
+
+  &__icon {
+    color: $whiteColor;
   }
 }
 
@@ -82,7 +99,9 @@
   &__number {
     padding: 5px 15px;
     outline: none;
-    width: 50px;
+    width: 35px;
+    text-align: right;
+    margin: 8px 0;
   }
 
   &__price,

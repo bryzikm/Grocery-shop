@@ -1,48 +1,52 @@
-import {Component, OnDestroy} from '@angular/core';
+import {Component, OnChanges, SimpleChanges} from '@angular/core';
 import {ProductsService} from '../../services/products/products.service';
 import {Store} from '@ngrx/store';
-import {CartProduct} from '../../store/model/cart_product.model';
 import {Observable} from 'rxjs/Observable';
 import {ShopCart} from '../../store/shop_cart.class';
-import {HIDE_CART, REMOVE, SHOW_CART} from '../../store/reducer/shopcart.reducer';
+import {DECREMENT, HIDE_CART, INCREMENT, REMOVE, SHOW_CART} from '../../store/reducer/shopcart.reducer';
 
 @Component({
-    selector: 'app-product-cart',
-    templateUrl: './product_cart.component.html',
-    styleUrls: ['./product_cart.component.scss']
+  selector: 'app-product-cart',
+  templateUrl: './product_cart.component.html',
+  styleUrls: ['./product_cart.component.scss']
 })
-export class ProductCartComponent implements OnDestroy {
-    public products: CartProduct[] = [];
-    public areItemsInCart: boolean;
-    public shopCartSubscription: Observable<ShopCart>;
+export class ProductCartComponent implements OnChanges {
+  public shopCartSubscription: Observable<ShopCart>;
 
-    constructor(private productsService: ProductsService, private store: Store<any>) {
-        this.shopCartSubscription = store.select('shopCart');
-    }
+  constructor(private productsService: ProductsService, private store: Store<any>) {
+    this.shopCartSubscription = store.select('shopCart');
 
-    public showShopCart() {
-        this.store.dispatch({type: SHOW_CART});
-    }
+    /*store.select('shopCart').subscribe((data) => {
+      const temp = {
+        items: data.items,
+        sum: data.sum
+      };
 
-    public hideShopCart() {
-        this.store.dispatch({type: HIDE_CART});
-    }
+      this.productsService.saveProducts(temp);
+    });*/
+  }
 
-    public changeProductNumber() {
-    }
+  public showShopCart() {
+    this.store.dispatch({type: SHOW_CART});
+  }
 
-    public removeProductFromCart(product) {
-        this.store.dispatch({type: REMOVE, payload: product});
-    }
+  public hideShopCart() {
+    this.store.dispatch({type: HIDE_CART});
+  }
 
-    ngOnDestroy() {
-        this.shopCartSubscription.subscribe((data) => {
-            const state = {
-                items: data.items,
-                sum: data.sum
-            };
+  public incrementProductNumber(product) {
+    this.store.dispatch({type: INCREMENT, payload: product});
+  }
 
-            this.productsService.saveProducts(state);
-        });
-    }
+  public decrementProductNumber(product) {
+    this.store.dispatch({type: DECREMENT, payload: product});
+  }
+
+  public removeProductFromCart(product) {
+    this.store.dispatch({type: REMOVE, payload: product});
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes);
+  }
 }
