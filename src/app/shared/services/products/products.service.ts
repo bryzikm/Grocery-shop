@@ -14,16 +14,16 @@ export class ProductsService {
   }
 
   public saveProducts(products) {
-    sessionStorage.setItem(ConstantsService.PRODUCTS, JSON.stringify(products));
+    sessionStorage.setItem(ConstantsService.SHOP_CART, JSON.stringify(products));
   }
 
   public checkIfProductsAreSaved() {
     const products = this.getProductsFromStorage();
 
-    return products !== null && products.length !== 0;
+    return products !== null;
   }
 
   public getProductsFromStorage() {
-    return JSON.parse(sessionStorage.getItem(ConstantsService.PRODUCTS));
+    return JSON.parse(sessionStorage.getItem(ConstantsService.SHOP_CART));
   }
 }

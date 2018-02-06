@@ -4,5 +4,5 @@ import {Injectable} from '@angular/core';
 export class ConstantsService {
   public static readonly PRICE = 'PRICE';
   public static readonly NAME = 'NAME';
-  public static readonly PRODUCTS = 'PRODUCTS';
+  public static readonly SHOP_CART = 'SHOPCART';
 }

@@ -6,26 +6,43 @@
 }
 
 .button {
-  border: 0;
-  background-color: $baseThemeColor;
-  padding: 10px 15px;
   cursor: pointer;
-  width: 135px;
   text-align: center;
+  border: 0;
   @include transition(.3s);
+
+  &--show {
+    background-color: $baseThemeColor;
+
+    &:hover {
+      background-color: darken($baseThemeColor, 15%);
+      @include transition(.3s);
+    }
+  }
+
+  &--remove {
+    background-color: $baseDangerColor;
+
+    &:hover {
+      background-color: darken($baseDangerColor, 15%);
+      @include transition(.3s);
+    }
+  }
 
   &__text {
     color: $whiteColor;
     font-size: 1.2em;
-  }
-
-  &:hover {
-    background-color: darken($baseThemeColor, 15%);
-    @include transition(.3s);
+    padding: 10px 15px;
+    width: 135px;
+    display: inline-block;
   }
 }
 
 .products {
+  &-cart {
+    overflow-x: auto;
+  }
+
   &--empty {
     text-align: center;
     padding: 50px 0;
@@ -36,5 +53,44 @@
     color: $baseBoldFontColor;
     font-weight: 600;
     text-transform: uppercase;
+  }
+
+  &--content {
+    padding: 0 0 20px;
+  }
+}
+
+.product {
+  &__wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  &__image {
+    height: 150px;
+    margin-right: 25px;
+  }
+
+  &__name {
+    font-size: 1.1em;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: $baseBoldFontColor;
+    padding: 0 15px;
+  }
+
+  &__number {
+    padding: 5px 15px;
+    outline: none;
+    width: 50px;
+  }
+
+  &__price,
+  &__summary {
+    font-size: 1em;
+    font-weight: 600;
+    color: $baseBoldFontColor;
+    padding: 0 15px;
+    min-width: 125px;
   }
 }

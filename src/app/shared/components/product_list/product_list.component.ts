@@ -5,7 +5,7 @@ import {LoggerService} from '../../services/logger/logger.service';
 import {ConstantsService} from '../../services/constants/constants.service';
 import {ShopCart} from '../../store/shop_cart.class';
 import {Store} from '@ngrx/store';
-import {ADD} from "../../store/reducer/shopcart.reducer";
+import {ADD, INIT_CART} from '../../store/reducer/shopcart.reducer';
 
 @Component({
   selector: 'app-product-list',
@@ -21,6 +21,7 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
     this.getProductsList();
+    this.initShopCartState();
   }
 
   public addProductToCart(product: Product) {
@@ -55,5 +56,16 @@ export class ProductListComponent implements OnInit {
 
   private getProductsListSuccess(data) {
     this.products = data;
+  }
+
+  private initShopCartState() {
+    if (this.productsService.checkIfProductsAreSaved()) {
+        const stateAction = {
+            type: INIT_CART,
+            payload: this.productsService.getProductsFromStorage()
+        };
+
+        this.store.dispatch(stateAction);
+    }
   }
 }

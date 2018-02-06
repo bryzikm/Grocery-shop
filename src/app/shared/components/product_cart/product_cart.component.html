@@ -1,15 +1,55 @@
 <div class="products-cart">
   <div class="button-wrapper">
-    <button class="button" (click)="changeCartVisibility()">
-      <span class="button__text" *ngIf="!isCartVisible">Pokaż koszyk</span>
-      <span class="button__text" *ngIf="isCartVisible">Ukryj koszyk</span>
+    <button class="button button--show">
+      <span class="button__text"
+        *ngIf="!(shopCartSubscription | async)?.isCartVisible"
+        (click)="showShopCart()">Pokaż koszyk</span>
+      <span class="button__text"
+        *ngIf="(shopCartSubscription | async)?.isCartVisible"
+        (click)="hideShopCart()">Ukryj koszyk</span>
     </button>
   </div>
-  <div class="products" *ngIf="isCartVisible">
-    <div class="products--content" *ngIf="products.length > 0">
-      <div *ngFor="let product of products">{{product.name}}</div>
+  <div class="products" *ngIf="(shopCartSubscription | async)?.isCartVisible">
+    <div class="products--content" *ngIf="(shopCartSubscription | async)?.items.length > 0">
+      <table>
+        <thead>
+          <tr>
+            <td></td>
+            <td></td>
+            <td>Ilość</td>
+            <td></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="product" *ngFor="let product of (shopCartSubscription | async)?.items">
+            <td>
+              <img class="product__image" src="{{product.image_url}}" />
+            </td>
+            <td class="product__name">{{product.name}}</td>
+            <td>
+              <input class="product__number" type="number" min="1"
+                     [(ngModel)]="product.count"
+                     (ngModelChange)="changeProductNumber()" />
+            </td>
+            <td class="product__price">Cena: {{product.price * product.count | number : '1.2'}} zł</td>
+            <td>
+              <button class="button button--remove" (click)="removeProductFromCart(product);">
+                <span class="button__text">Usuń z koszyka</span>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="product__summary">Cena: {{ (shopCartSubscription | async)?.sum | number : '1.2' }} zł</td>
+          </tr>
+        </tfoot>
+      </table>
     </div>
-    <div class="products--empty" *ngIf="products.length === 0">
+    <div class="products--empty" *ngIf="(shopCartSubscription | async)?.items.length === 0">
       <p class="products__info">Brak produktów w koszyku</p>
     </div>
   </div>
