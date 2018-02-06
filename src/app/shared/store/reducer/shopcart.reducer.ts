@@ -11,7 +11,7 @@ export const INIT_CART = 'INIT_CART';
 export const SHOW_CART = 'SHOW_CART';
 export const HIDE_CART = 'HIDE_CART';
 
-export const ShopCartReducer: ActionReducer<ShopCart> = (state: ShopCart = new ShopCart(), action: Action) => {
+export function ShopCartReducer(state: ShopCart = new ShopCart(), action: Action): ShopCart {
   switch (action.type) {
     case ADD:
       return addToCart(state, action.payload);
@@ -39,7 +39,7 @@ export const ShopCartReducer: ActionReducer<ShopCart> = (state: ShopCart = new S
     default:
       return state;
   }
-};
+}
 
 export function addToCart(shopCart: ShopCart, payload: CartProduct) {
   shopCart.isCartVisible = true;

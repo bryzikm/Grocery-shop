@@ -42,7 +42,7 @@ export class ProductListComponent implements OnInit {
   }
 
   private sortArrayByProperty(propertyName) {
-    return function (first, second) {
+    return (first, second) => {
       return ((first[propertyName] === second[propertyName]) ? 0 : ((first[propertyName] > second[propertyName]) ? 1 : -1));
     };
   }

@@ -1,4 +1,4 @@
-import {Component, OnChanges, SimpleChanges} from '@angular/core';
+import {Component} from '@angular/core';
 import {ProductsService} from '../../services/products/products.service';
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs/Observable';
@@ -10,7 +10,7 @@ import {DECREMENT, HIDE_CART, INCREMENT, REMOVE, SHOW_CART} from '../../store/re
   templateUrl: './product_cart.component.html',
   styleUrls: ['./product_cart.component.scss']
 })
-export class ProductCartComponent implements OnChanges {
+export class ProductCartComponent {
   public shopCartSubscription: Observable<ShopCart>;
 
   constructor(private productsService: ProductsService, private store: Store<any>) {
@@ -44,9 +44,5 @@ export class ProductCartComponent implements OnChanges {
 
   public removeProductFromCart(product) {
     this.store.dispatch({type: REMOVE, payload: product});
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
   }
 }
