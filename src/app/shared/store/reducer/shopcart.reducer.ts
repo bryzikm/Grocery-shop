@@ -96,7 +96,7 @@ export function initShopCart(shopCart: ShopCart, payload) {
   return shopCart;
 }
 
-function checkIfProductIsInCart(product: CartProduct, products: CartProduct[]) {
+export function checkIfProductIsInCart(product: CartProduct, products: CartProduct[]) {
   const cartItem = products.filter((item) => {
     return item.id === product.id
   })[0];
