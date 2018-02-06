@@ -1,7 +1,7 @@
-import {ActionReducer} from '@ngrx/store';
 import {ShopCart} from '../shop_cart.class';
 import {CartProduct} from '../model/cart_product.model';
 import {Action} from '../model/action.model';
+import {StorageService} from '../../services/storage/storage.service';
 
 export const ADD = 'ADD';
 export const REMOVE = 'REMOVE';
@@ -47,6 +47,8 @@ export function addToCart(shopCart: ShopCart, payload: CartProduct) {
   if (!checkIfProductIsInCart(payload, shopCart.items)) {
     shopCart.sum += payload.price;
     shopCart.items.push(Object.assign({count: 1}, payload));
+
+    saveDataToStorage(shopCart);
   }
 
   return shopCart;
@@ -57,6 +59,8 @@ export function removeFromCart(shopCart: ShopCart, payload: CartProduct) {
     if (shopCart.items[i].id === payload.id) {
       shopCart.sum -= shopCart.items[i].price * shopCart.items[i].count;
       shopCart.items.splice(i, 1);
+
+      saveDataToStorage(shopCart);
     }
   }
 
@@ -68,6 +72,8 @@ export function incrementProductNumber(shopCart: ShopCart, payload: CartProduct)
     if (shopCart.items[i].id === payload.id) {
       shopCart.items[i].count++;
       shopCart.sum += shopCart.items[i].price;
+
+      saveDataToStorage(shopCart);
     }
   }
 
@@ -84,6 +90,8 @@ export function decrementProductNumber(shopCart: ShopCart, payload: CartProduct)
       shopCart.items.splice(i, 1);
     }
   }
+
+  saveDataToStorage(shopCart);
 
   return shopCart;
 }
@@ -102,4 +110,13 @@ export function checkIfProductIsInCart(product: CartProduct, products: CartProdu
   })[0];
 
   return cartItem && cartItem !== undefined && cartItem !== null;
+}
+
+export function saveDataToStorage(shopCart: ShopCart) {
+  const storageObject = {
+    items: shopCart.items,
+    sum: shopCart.sum
+  };
+
+  StorageService.saveToStorage(storageObject);
 }

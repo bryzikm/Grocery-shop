@@ -6,6 +6,7 @@ import {ConstantsService} from '../../services/constants/constants.service';
 import {ShopCart} from '../../store/shop_cart.class';
 import {Store} from '@ngrx/store';
 import {ADD, INIT_CART} from '../../store/reducer/shopcart.reducer';
+import {StorageService} from 'app/shared/services/storage/storage.service';
 
 @Component({
   selector: 'app-product-list',
@@ -59,10 +60,10 @@ export class ProductListComponent implements OnInit {
   }
 
   private initShopCartState() {
-    if (this.productsService.checkIfProductsAreSaved()) {
+    if (StorageService.checkIfProductsAreSaved()) {
         const stateAction = {
             type: INIT_CART,
-            payload: this.productsService.getProductsFromStorage()
+            payload: StorageService.getProductsFromStorage()
         };
 
         this.store.dispatch(stateAction);

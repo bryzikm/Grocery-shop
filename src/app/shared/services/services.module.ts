@@ -4,6 +4,7 @@ import {UrlsService} from './urls/urls.service';
 import {ProductsService} from './products/products.service';
 import {LoggerService} from './logger/logger.service';
 import {ConstantsService} from './constants/constants.service';
+import {StorageService} from './storage/storage.service';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ export class ServicesModule {
         UrlsService,
         ProductsService,
         LoggerService,
-        ConstantsService
+        ConstantsService,
+        StorageService
       ]
     };
   }
