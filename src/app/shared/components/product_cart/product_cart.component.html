@@ -11,8 +11,8 @@
   </div>
   <div class="products" *ngIf="(shopCartSubscription | async)?.isCartVisible">
     <div class="products--content" *ngIf="(shopCartSubscription | async)?.items.length > 0">
-      <table>
-        <thead>
+      <table class="products-table">
+        <thead class="products-table__head">
           <tr>
             <td></td>
             <td></td>
@@ -20,13 +20,13 @@
             <td></td>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="products-table__body">
           <tr class="product" *ngFor="let product of (shopCartSubscription | async)?.items">
-            <td>
+            <td class="product__column">
               <img class="product__image" src="{{product.image_url}}"/>
             </td>
-            <td class="product__name">{{product.name}}</td>
-            <td class="input-group">
+            <td class="product__name product__column">{{product.name}}</td>
+            <td class="input-group product__column">
               <button class="button button--increment" (click)="incrementProductNumber(product);">
                 <i class="material-icons button__icon">add</i>
               </button>
@@ -36,15 +36,15 @@
                 <i class="material-icons button__icon">remove</i>
               </button>
             </td>
-            <td class="product__price">Cena: {{product.price * product.count | number : '1.2'}} zł</td>
-            <td>
+            <td class="product__price product__column">Cena: {{product.price * product.count | number : '1.2'}} zł</td>
+            <td class="product__column">
               <button class="button button--remove" (click)="removeProductFromCart(product);">
                 <span class="button__text">Usuń z koszyka</span>
               </button>
             </td>
           </tr>
         </tbody>
-        <tfoot>
+        <tfoot class="products-table__footer">
           <tr>
             <td></td>
             <td></td>
