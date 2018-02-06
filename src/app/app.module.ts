@@ -10,7 +10,7 @@ import {DependenciesModule} from './dependencies.module';
 import {StoreModule} from '@ngrx/store';
 import {ShopCartReducer} from './shared/store/reducer/shopcart.reducer';
 
-const ROOT_REDUCER: any = {
+export const ROOT_REDUCER: any = {
   shopCart: ShopCartReducer
 };
 
